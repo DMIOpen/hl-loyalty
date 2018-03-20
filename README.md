@@ -1,4 +1,4 @@
 # hl-loyalty
 The repository to store source code for the loyalty program, using Hyperledger. 
 
-Testing slack integration - VA01
+Testing slack integration - VA02
