@@ -1,0 +1,75 @@
+/**
+ * Loyalty Point trading network
+ */
+namespace org.acme.loyalty
+
+asset Product identified by productId {
+    o String productId
+    o String prodcutName
+    o String productCategory
+    o String description optional
+    o String price
+    o Double quantity
+    --> Owner Owner
+    --> Owner Merchant
+}
+
+asset Wallet identified by walletId {
+    o String walletId
+    o String wAmount
+    o DateTime wAmountLastupdated
+    o String wPrevAmount optional
+    o String wLoyaltyAmount
+    o String amount
+    --> Owner Owner
+    --> Owner Customer
+}
+
+asset LoyalityPoint identified by loyaltyId {
+    o String loyaltyId
+    o String loyaltypoint
+    o DateTime loyaltyLastupdated
+    o DateTime LoyaltyExpDate
+    --> Owner Owner
+    --> Owner Customer
+}
+
+participant Merchant identified by emailId {
+    o String emailId
+    o String merchantId
+    o String firstName
+    o String lastName
+    o String phoneNumber
+    o String aadharId optional
+    o String address
+}
+
+participant Customer identified by emailId {
+  o String emailId
+  o String firstName
+  o String lastName
+  o String phoneNumber
+  o String custId
+  o String aadharId optional
+  o String address
+}
+
+participant Owner identified by emailId {
+  o String adminID
+  o String emailId
+  o String firstName
+  o String lastName
+  o String address
+  o String phoneNumber
+  o String aadharId optional
+}
+
+transaction Trade {
+    --> Product product
+    --> Customer newOwner
+ 
+}
+
+event TradeNotification {
+    --> Merchant merchant
+}
