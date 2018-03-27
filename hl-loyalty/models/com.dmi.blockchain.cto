@@ -6,14 +6,28 @@ namespace com.dmi.blockchain
 
 participant User identified by email {
   o String email
+  o String name
 }
 
-asset SampleAsset identified by assetId {
+participant Merchant identified by merchantId {
+ o String merchantId
+ o String businessName
+}
+
+enum PaymentMode {
+o CASH
+o POINTS
+}
+
+asset Order identified by assetId {
   o String assetId
-  o String value
+  o Double value
+  o String PaymentMode
 }
 
-transaction ChangeAssetValue {
-  o String newValue
-  --> Asset relatedAsset
+transaction Sale {
+o Order order
+o Merchant Merchant
+o User User
+o Double Loyaltypoints
 }
